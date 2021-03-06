@@ -31,9 +31,6 @@ namespace CoreAspShop.Areas.Customer.Controllers
             if (product is null)
                 return NotFound();
             return View(product);
-
-
-
         }
     }
 }

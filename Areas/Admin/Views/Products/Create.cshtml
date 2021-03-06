@@ -40,6 +40,15 @@
 
         <div class="row mt-4 form-group">
             <div class="col-3">
+                <label asp-for="Product.ShadeColor"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Product.ShadeColor" class="form-control"  />
+            </div>
+        </div>
+
+        <div class="row mt-4 form-group">
+            <div class="col-3">
                 <label asp-for="Product.Image"></label>
             </div>
             <div class="col-6">
@@ -54,8 +63,8 @@
             </div>
             <div class="col-6">
                 <select asp-for="Product.ProductTypeId" asp-items="Model.ProductTypes.ToSelectListItems(Model.Product.ProductTypeId)" class="form-control">
-            <option value="">Select a Product Type</option>
-        </select>
+                    <option value="">Select a Product Type</option>
+                </select>
             </div>
             <span asp-validation-for="Product.ProductTypeId" class="text-danger"></span>
         </div>
@@ -66,8 +75,8 @@
             </div>
             <div class="col-6">
                 <select asp-for="Product.SpecialTagsId" asp-items="Model.SpecialTags.ToSelectListItems(Model.Product.SpecialTagsId)" class="form-control">
-            <option value="">Select a Product Type</option>
-        </select>
+                    <option value="">Select a Product Type</option>
+                </select>
             </div>
             <span asp-validation-for="Product.SpecialTagsId" class="text-danger"></span>
         </div>

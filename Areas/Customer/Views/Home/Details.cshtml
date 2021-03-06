@@ -1,0 +1,90 @@
+﻿@model CoreAspShop.Models.Product
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h1 class="text-info">Product details</h1>
+<div class="row border rounded p-4">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="col-8">
+        <div class="row mt-4 form-group">
+            <div class="col-3">
+                <label asp-for="Name"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Name" class="form-control" disabled />
+            </div>
+        </div>
+
+        <div class="row mt-4 form-group">
+            <div class="col-3">
+                <label asp-for="ShadeColor"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="ShadeColor" class="form-control" disabled />
+            </div>
+        </div>
+
+        <div class="row mt-4 form-group">
+            <div class="col-3">
+                <label asp-for="Price"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Price" class="form-control" disabled />
+            </div>
+        </div>
+
+        <div class="row mt-4 form-group">
+            <div class="col-3">
+                <label asp-for="ProductType"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="ProductType.Name" class="form-control" disabled />
+            </div>
+        </div>
+
+
+        @if (!Model.SpecialTag.Name.Equals("None"))
+        {
+            <div class="row mt-4 form-group">
+                <div class="col-3">
+                    <label asp-for="SpecialTag"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="SpecialTag.Name" class="form-control" disabled />
+                </div>
+            </div>
+
+        }
+
+        <div class="row mt-4 form-group">
+            <div class="col-3">
+            </div>
+            <div class="col-6">
+                <a asp-action="#" class="btn btn-info form-control">Add to Cart</a>
+            </div>
+        </div>
+
+        <div class="row mt-4 form-group">
+            <div class="col-3">
+                <a asp-action="#" class="btn btn-success">Add to Cart</a>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-3 offset-1">
+        <img src="@Model.Image" class="photo-format" />
+        @if (Model.Available is true)
+        {
+            <div class="col m-3 offset-1">
+                <img src="~/Images/test-1024x768.jpg" class="photo-format" />
+            </div>
+        }
+    </div>
+
+</div>
+
+
+

@@ -31,6 +31,7 @@
                 <th>@Html.DisplayNameFor(x => x.Available)</th>
                 <th>@Html.DisplayNameFor(x => x.ProductType)</th>
                 <th>@Html.DisplayNameFor(x => x.SpecialTag)</th>
+                <th>@Html.DisplayNameFor(x => x.ShadeColor)</th>
                 <th></th>
             </tr>
         </thead>
@@ -56,12 +57,13 @@
                     </td>
                     <td>@Html.DisplayFor(x => item.Available)</td>
                     <td>@Html.DisplayFor(x => item.ProductType.Name)</td>
+                    <td>@Html.DisplayFor(x => item.ShadeColor)</td>
                     <td>
                         @if(!item.SpecialTag.Name.Equals("None"))
                         {
                             @Html.DisplayFor(x => item.SpecialTag.Name)
                         }                 
-                    </td>
+                    </td>                   
                     <partial name="_TableButtonsPartial" model="item.Id" />
                 </tr>
             }

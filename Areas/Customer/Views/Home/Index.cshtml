@@ -10,17 +10,22 @@
         </div>
     </div>
 }
-<nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+@*<nav class="navbar navbar-expand-lg navbar-dark bg-dark lighten-3 mt-3 mb-5">
     <span class="navbar-brand">Categories:</span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nextNav" aria-controls="nextNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="navbar-collapse collapse" id="nextNav">
         <ul class="navbar-nav mr-auto">
-
+            @foreach(var el in Model)
+            {
+                <li class="nav-item">
+                    <a href="#" class="nav-link">@el.ProductTypeId</a>
+                </li>
+            }
         </ul>
     </div>
-</nav>
+</nav>*@
 <div class="row">
     @foreach (var el in Model)
     {
