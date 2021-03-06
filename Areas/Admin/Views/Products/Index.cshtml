@@ -1,0 +1,71 @@
+﻿@model IEnumerable<CoreAspShop.Models.Product>
+@{
+    ViewData["Title"] = "Index";
+}
+@if (TempData["SM"] != null)
+{
+    <div class="row text-center">
+        <div class="col-12 alert alert-success">
+            @TempData["SM"]
+        </div>
+    </div>
+}
+
+
+
+<div class="row mt-2">
+    <div class="col-sm-12 col-lg-6">
+        <h2 class="text-info">Product List</h2>
+    </div>
+    <div class="col-sm-12 col-lg-6 text-right">
+        <a asp-action="Create" class="btn btn-info">New Product</a>
+    </div>
+</div>
+
+<div class="row mt-1">
+    <table class="table table-striped border">
+        <thead>
+            <tr class="table-info">
+                <th>@Html.DisplayNameFor(x => x.Name)</th>
+                <th>@Html.DisplayNameFor(x => x.Price)</th>
+                <th>@Html.DisplayNameFor(x => x.Available)</th>
+                <th>@Html.DisplayNameFor(x => x.ProductType)</th>
+                <th>@Html.DisplayNameFor(x => x.SpecialTag)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(x => item.Name)</td>
+                    <td>
+                        @*@{
+            var timeZoneFullName = TimeZoneInfo.Local;
+            string[] divisionStr = timeZoneFullName.ToString().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            var UTC = divisionStr[0];
+
+            if (UTC == "(UTC+03:00)")
+            {
+                System.Globalization.CultureInfo.CurrentCulture = new System.Globalization.CultureInfo("ru-RU");
+            }
+            string formateData = string.Format("{0:C2}", item.Price);
+            @Html.DisplayFor(x => formateData)
+        }*@
+                        @String.Format("{0:C2}", item.Price)
+                    </td>
+                    <td>@Html.DisplayFor(x => item.Available)</td>
+                    <td>@Html.DisplayFor(x => item.ProductType.Name)</td>
+                    <td>
+                        @if(!item.SpecialTag.Name.Equals("None"))
+                        {
+                            @Html.DisplayFor(x => item.SpecialTag.Name)
+                        }                 
+                    </td>
+                    <partial name="_TableButtonsPartial" model="item.Id" />
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

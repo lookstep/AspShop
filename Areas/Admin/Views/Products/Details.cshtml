@@ -1,0 +1,70 @@
+﻿@model CoreAspShop.Models.ViewModels.ProductsViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+@using CoreAspShop.Extensions
+<h3 class="text-success">Product details</h3>
+
+
+    <div class="row border rounded p-4">
+
+        <input type="hidden" asp-for="Product.Id" />
+        <div class="col-8">
+
+        <div class="row mt-4 form-group">
+            <div class="col-3">
+                <label asp-for="Product.Name"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Product.Name" class="form-control" disabled />
+            </div>
+        </div>
+
+        <div class="row mt-4 form-group">
+            <div class="col-3">
+                <label asp-for="Product.Price"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Product.Price" class="form-control" disabled />
+            </div>
+        </div>
+
+        <div class="row mt-4 form-group">
+            <div class="col-3">
+                <label asp-for="Product.Available"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Product.Available" class="form-check" type="checkbox" disabled />
+            </div>
+        </div>
+     
+
+        <div class="row mt-4 form-group">
+            <div class="col-3">
+                <label asp-for="ProductTypes"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Product.ProductType.Name" class="form-control" disabled />
+            </div>
+        </div>
+
+        <div class="row mt-4 form-group">
+            <div class="col-3">
+                <label asp-for="SpecialTags"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Product.SpecialTag.Name" class="form-control" disabled/>
+            </div>
+        </div>
+    </div>
+    <div class="col-3 offset-1">
+        <img src="@Model.Product.Image" class="photo-format"/>
+    </div>
+        <br />
+
+        <div class="form-group">
+            <a asp-action="Edit" asp-route-id="@Model.Product.Id" class="btn btn-info">Go to edit</a>
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+
+    </div>

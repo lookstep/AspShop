@@ -1,0 +1,30 @@
+﻿@model CoreAspShop.Models.SpecialTag
+@{
+    ViewData["Title"] = "Edit";
+}
+<h1 class="text-info">Edit</h1>
+<form method="post" asp-action="Edit">
+    <div class="border rounded p-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="row form-group">
+
+            <div class="col-2">
+                <label asp-for="Name"></label>
+            </div>
+
+            <div class="col-5">
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <input type="submit" value="Edit" class="btn btn-primary" />
+            <a asp-action="index" class="btn btn-success">Back to list</a>
+        </div>
+    </div>
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

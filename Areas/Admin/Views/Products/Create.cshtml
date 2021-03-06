@@ -1,0 +1,89 @@
+﻿@model CoreAspShop.Models.ViewModels.ProductsViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+@using CoreAspShop.Extensions
+<h3 class="text-info">Create new product</h3>
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+    <div class="container border rounded">
+
+        <div class="row mt-4 form-group">
+            <div class="col-3">
+                <label asp-for="Product.Name"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Product.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Product.Name" class="text-danger"></span>
+        </div>
+
+        <div class="row mt-4 form-group">
+            <div class="col-3">
+                <label asp-for="Product.Price"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Product.Price" class="form-control" />
+            </div>
+            <span asp-validation-for="Product.Price" class="text-danger"></span>
+        </div>
+
+        <div class="row mt-4 form-group">
+            <div class="col-3">
+                <label asp-for="Product.Available"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Product.Available" class="form-check" type="checkbox" />
+            </div>
+            <span asp-validation-for="Product.Available" class="text-danger"></span>
+        </div>
+
+        <div class="row mt-4 form-group">
+            <div class="col-3">
+                <label asp-for="Product.Image"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Product.Image" class="custom-file" name="files" type="file" accept="image/jpeg,image/png" />
+            </div>
+            <span asp-validation-for="Product.Image" class="text-danger"></span>
+        </div>
+
+        <div class="row mt-4 form-group">
+            <div class="col-3">
+                <label asp-for="Product.ProductTypeId"></label>
+            </div>
+            <div class="col-6">
+                <select asp-for="Product.ProductTypeId" asp-items="Model.ProductTypes.ToSelectListItems(Model.Product.ProductTypeId)" class="form-control">
+            <option value="">Select a Product Type</option>
+        </select>
+            </div>
+            <span asp-validation-for="Product.ProductTypeId" class="text-danger"></span>
+        </div>
+
+        <div class="row mt-4 form-group">
+            <div class="col-3">
+                <label asp-for="SpecialTags"></label>
+            </div>
+            <div class="col-6">
+                <select asp-for="Product.SpecialTagsId" asp-items="Model.SpecialTags.ToSelectListItems(Model.Product.SpecialTagsId)" class="form-control">
+            <option value="">Select a Product Type</option>
+        </select>
+            </div>
+            <span asp-validation-for="Product.SpecialTagsId" class="text-danger"></span>
+        </div>
+
+
+        <br />
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+
+    </div>
+</form>
+
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,51 @@
+﻿@model List<CoreAspShop.Models.Product>
+@{
+    ViewData["Title"] = "Index";
+}
+@if (TempData["SM"] != null)
+{
+    <div class="row text-center">
+        <div class="col alert alert-success">
+            @TempData["SM"]
+        </div>
+    </div>
+}
+<nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+    <span class="navbar-brand">Categories:</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nextNav" aria-controls="nextNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="nextNav">
+        <ul class="navbar-nav mr-auto">
+
+        </ul>
+    </div>
+</nav>
+<div class="row">
+    @foreach (var el in Model)
+    {
+        <div class="col-sm-12 col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h6 class="font-weight-bold text-info text-center text-uppercase">
+                        @el.Name
+                    </h6>            
+                </div>
+                <div class="card-body">
+                    <img src="@el.Image" class="card-img-top"/>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <h6 class="text-danger font-weight-bold">
+                                @string.Format("{0:C}", el.Price)
+                            </h6>
+                        </div>
+                        <a asp-action="Details" asp-controller="Home" asp-route-id="@el.Id" class="btn btn-outline-info" >View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

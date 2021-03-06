@@ -1,0 +1,23 @@
+﻿@model CoreAspShop.Models.ProductType
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2 class="text-danger mt-1">Product Type Details</h2>
+    <div class="border rounded p-4">
+        <div class="row form-group">
+
+            <div class="col-2">
+                <label asp-for="Name"></label>
+            </div>
+
+            <div class="col-5">
+                <input asp-for="Name" class="form-control" disabled />
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.Id">Go to edit</a>
+            <a asp-action="index" class="btn btn-success">Back to list</a>
+        </div>
+    </div>

@@ -1,0 +1,32 @@
+﻿@model CoreAspShop.Models.SpecialTag
+@{
+    ViewData["Title"] = "Adding";
+}
+<h2 class="text-info mt-1">Add new special tag</h2>
+<form method="post" asp-action="Adding">
+    <div class="border rounded p-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="row form-group">
+
+            <div class="col-2">
+                <label asp-for="Name"></label>
+            </div>
+
+            <div class="col-5">
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Add" />
+            <a asp-action="index" class="btn btn-success">Back to list</a>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
