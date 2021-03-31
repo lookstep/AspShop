@@ -1,90 +1,118 @@
-﻿@model CoreAspShop.Models.Product
+﻿@using Microsoft.AspNetCore.Http
+@using CoreAspShop.Extensions
+
+@model CoreAspShop.Models.Product
 @{
     ViewData["Title"] = Model.Name;
 }
+@inject IHttpContextAccessor HttpContextAccessor
 
 <h1 class="text-info">Product details</h1>
-<div class="row border rounded p-4">
-    <input type="hidden" asp-for="Id" />
-
-    <div class="col-8">
-        <div class="row mt-4 form-group">
-            <div class="col-3">
-                <label asp-for="Name"></label>
-            </div>
-            <div class="col-6">
-                <input asp-for="Name" class="form-control" disabled />
-            </div>
-        </div>
-
-        <div class="row mt-4 form-group">
-            <div class="col-3">
-                <label asp-for="ShadeColor"></label>
-            </div>
-            <div class="col-6">
-                <input asp-for="ShadeColor" class="form-control" disabled />
-            </div>
-        </div>
-
-        <div class="row mt-4 form-group">
-            <div class="col-3">
-                <label asp-for="Price"></label>
-            </div>
-            <div class="col-6">
-                <input asp-for="Price" class="form-control" disabled />
-            </div>
-        </div>
-
-        <div class="row mt-4 form-group">
-            <div class="col-3">
-                <label asp-for="ProductType"></label>
-            </div>
-            <div class="col-6">
-                <input asp-for="ProductType.Name" class="form-control" disabled />
-            </div>
-        </div>
+<form method="post">
 
 
-        @if (!Model.SpecialTag.Name.Equals("None"))
-        {
+    <div class="row border rounded p-4">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="col-8">
             <div class="row mt-4 form-group">
                 <div class="col-3">
-                    <label asp-for="SpecialTag"></label>
+                    <label asp-for="Name"></label>
                 </div>
                 <div class="col-6">
-                    <input asp-for="SpecialTag.Name" class="form-control" disabled />
+                    <input asp-for="Name" class="form-control" disabled />
                 </div>
             </div>
 
-        }
+            <div class="row mt-4 form-group">
+                <div class="col-3">
+                    <label asp-for="ShadeColor"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="ShadeColor" class="form-control" disabled />
+                </div>
+            </div>
 
-        <div class="row mt-4 form-group">
-            <div class="col-3">
+            <div class="row mt-4 form-group">
+                <div class="col-3">
+                    <label asp-for="Price"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="Price" class="form-control" disabled />
+                </div>
             </div>
-            <div class="col-6">
-                <a asp-action="#" class="btn btn-info form-control">Add to Cart</a>
+
+            <div class="row mt-4 form-group">
+                <div class="col-3">
+                    <label asp-for="ProductType"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="ProductType.Name" class="form-control" disabled />
+                </div>
             </div>
+
+
+            @if (!Model.SpecialTag.Name.Equals("None"))
+            {
+                <div class="row mt-4 form-group">
+                    <div class="col-3">
+                        <label asp-for="SpecialTag"></label>
+                    </div>
+                    <div class="col-6">
+                        <input asp-for="SpecialTag.Name" class="form-control" disabled />
+                    </div>
+                </div>
+
+            }
+            @{
+                bool isInCart = false;
+                var listOfCart = HttpContextAccessor.HttpContext.Session.Get<List<int>>(SD.SessionKey);
+
+                if (listOfCart is not null && listOfCart.Contains(Model.Id))
+                {
+                    isInCart = true;
+                }
+            }
+            @if (isInCart)
+            {
+                <div class="row mt-4 form-group">
+                    <div class="col-3">
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" asp-action="Remove" asp-route-id="@Model.Id" class="btn btn-danger form-control">Delete to cart</button>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row mt-4 form-group">
+                    <div class="col-3">
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-info form-control">Add to Cart</button>
+                    </div>
+                </div>
+            }
+
+            <div class="row mt-4 form-group">
+                <div class="col-3">
+                    <a asp-action="Index" class="btn btn-success">Product list</a>
+                </div>
+
+            </div>
+
         </div>
-
-        <div class="row mt-4 form-group">
-            <div class="col-3">
-                <a asp-action="#" class="btn btn-success">Add to Cart</a>
-            </div>
-
+        <div class="col-3 offset-1">
+            <img src="@Model.Image" class="photo-format" />
+            @if (Model.Available is true)
+            {
+                <div class="col m-3 offset-1">
+                    <img src="~/Images/test-1024x768.jpg" class="photo-format" />
+                </div>
+            }
         </div>
 
     </div>
-    <div class="col-3 offset-1">
-        <img src="@Model.Image" class="photo-format" />
-        @if (Model.Available is true)
-        {
-            <div class="col m-3 offset-1">
-                <img src="~/Images/test-1024x768.jpg" class="photo-format" />
-            </div>
-        }
-    </div>
 
-</div>
-
-
+</form>
 

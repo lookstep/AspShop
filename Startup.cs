@@ -36,6 +36,16 @@ namespace CoreAspShop
             services.AddRazorPages();
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
+
+            // Внедряем зависимость и конфигурируем сессию
+            services.AddSession(options =>
+            {
+                // Устанавливаем время жизни сессии
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+
+                // Активируем куки
+                options.Cookie.HttpOnly = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +69,9 @@ namespace CoreAspShop
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            // Устанавливаем сессии в приложение
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@using CoreAspShop.Extensions
+
+@inject IHttpContextAccessor httpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -28,9 +33,30 @@
                         <li>
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="SpecialTags" asp-action="Index">Special Tags</a>
                         </li>
+
                         <li>
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Products" asp-action="Index">Products</a>
                         </li>
+
+                        @if (httpContextAccessor.HttpContext.Session.Get<List<int>>(SD.SessionKey) is not null)
+                        {
+                            <li>
+                                <a class="nav-link" asp-area="Customer" asp-controller="ShopingCart" asp-action="Index">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    @{ var count = httpContextAccessor.HttpContext.Session.Get<List<int>>(SD.SessionKey).Count; }
+                                    (@count)
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li style="color: white">
+                                <a class="nav-link" asp-area="Customer" asp-controller="ShopingCart" asp-action="Index">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    (0)
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
