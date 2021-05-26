@@ -1,0 +1,10 @@
+﻿@model CoreAspShop.Models.ViewModels.ShopingCartViewModel
+@{
+    ViewData["Title"] = "AppointmentConfirmation";
+}
+
+<h2 class="text-info">Appointment Confirmation</h2>
+<p class="text-dark">Your appointment has been submited. Pleas, feel fre contact us anytime you have any questions.</p>
+<partial name="_AppointmentCustomerDetailsPartial" model="@Model.Appointment"/>
+<partial name="_AppointmentProductDetailsPartial" model="@Model.Products">
+    <a asp-action="Index" class="btn btn-success">Back to Products</a>

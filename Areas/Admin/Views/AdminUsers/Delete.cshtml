@@ -1,0 +1,63 @@
+﻿@model CoreAspShop.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 class="text-danger">Delete</h1>
+<form method="post">
+    <div class="border rounded p-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="row form-group">
+
+            <div class="col-2">
+                <label asp-for="Name"></label>
+            </div>
+
+            <div class="col-5">
+                <input asp-for="Name" class="form-control" readonly />
+            </div>
+        </div>
+
+        <div class="row form-group">
+
+            <div class="col-2">
+                <label asp-for="PhoneNumber"></label>
+            </div>
+
+            <div class="col-5">
+                <input asp-for="PhoneNumber" class="form-control" readonly />
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-2">
+                <label asp-for="Email"></label>
+            </div>
+
+            <div class="col-5">
+                <input asp-for="Email" class="form-control" readonly />
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-2">
+                <label>Ban time(Houer):</label>
+            </div>
+
+            <div class="col-5">
+                <input name="banTime" class="form-control" type="number"/>
+            </div>
+        </div>
+
+        <br />
+        <div class="form-group">
+            <input type="submit" asp-route-id="@Model.Id" value="Ban" class="btn btn-danger" />
+            <a asp-action="index" class="btn btn-success">Back to list</a>
+        </div>
+    </div>
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

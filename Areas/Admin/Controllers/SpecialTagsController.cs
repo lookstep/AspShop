@@ -1,6 +1,8 @@
 ﻿using CoreAspShop.Data;
 using CoreAspShop.Helpers;
 using CoreAspShop.Models;
+using CoreAspShop.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace CoreAspShop.Areas.Admin.Controllers
 {
+    [Authorize(Roles = SD.SuperAdminEndUser)]
     [Area(nameof(Admin))]
     public class SpecialTagsController : Controller
     {

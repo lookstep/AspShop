@@ -1,0 +1,38 @@
+﻿@model Appointment
+<h4 class="text-success">Appointment Details</h4>
+<div class="container border rounded" style="background-color: aliceblue">
+
+    <div class="col-12 pt-3">
+        <div class="row mb-2">
+            <div class="col-sm-2">
+                <label asp-for="CustomerName">Full Name:</label>
+            </div>
+            <div class="col-sm-3">
+                <input asp-for="CustomerName" class="form-control" disabled />
+            </div>
+
+            <div class="col-sm-2 offset-2">
+                <label asp-for="CustomerPhoneNumber">Phone number: </label>
+            </div>
+            <div class="col-sm-3">
+                <input asp-for="CustomerPhoneNumber" class="form-control" disabled />
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-2">
+                <label asp-for="CustomerEmail">Email: </label>
+            </div>
+            <div class="col-sm-3">
+                <input asp-for="CustomerEmail" class="form-control" disabled />
+            </div>
+
+            <div class="col-sm-2 offset-2">
+                <label asp-for="AppointmentDay">Appointment Date: </label>
+            </div>
+            <div class="col-sm-3">
+                <input asp-for="AppointmentDay" class="form-control" disabled />
+            </div>
+        </div>
+    </div>
+
+</div>

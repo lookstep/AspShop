@@ -10,7 +10,7 @@ namespace CoreAspShop.Extensions
     public static class SessionExtension
     {
         // Добавляем динамически типизированный SET метод
-        public static void Set<T>(this ISession session, string key, T value)
+        public static void Set<T>(this ISession session, string key, T value) 
         {
             session.SetString(key, JsonSerializer.Serialize(value));
         }

@@ -9,7 +9,8 @@ namespace CoreAspShop.Utility
     {
         public const string DefaultProductImage = "default_product.png";
         public const string ImageFolder = @"Images\ProductImage";
-
         public const string SessionKey = "sShoppingCart";
+        public const string SuperAdminEndUser = "Super Admin";
+        public const string AdminEndUser = "Admin";
     }
 }

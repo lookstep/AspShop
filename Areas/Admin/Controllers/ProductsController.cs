@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using CoreAspShop.Utility;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoreAspShop.Areas.Admin.Controllers
 {
+    [Authorize(Roles = SD.SuperAdminEndUser)]
     [Area(nameof(Admin))]
     public class ProductsController : Controller
     {

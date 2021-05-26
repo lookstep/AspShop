@@ -38,6 +38,10 @@
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Products" asp-action="Index">Products</a>
                         </li>
 
+                        <li>
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminUsers" asp-action="Index">Admin Users</a>
+                        </li>
+
                         @if (httpContextAccessor.HttpContext.Session.Get<List<int>>(SD.SessionKey) is not null)
                         {
                             <li>
