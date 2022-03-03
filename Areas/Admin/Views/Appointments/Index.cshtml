@@ -1,0 +1,52 @@
+﻿@model CoreAspShop.Models.ViewModels.AppointmentViewModel
+@{
+    ViewData["Title"] = "Appointments";
+}
+<div class="row">
+    <div class="col">
+        <h1 class="text-info">Appointment List</h1>
+    </div>
+</div>
+<form method="get">
+    <div class="row">
+        <div class="col">
+            <input class="form-control" name="searchKey" type="text" placeholder="Type name, email or phone number for search" />
+        </div>
+        <div class="col-3">
+            <button type="submit" class="btn btn-primary form-control">Search</button>
+        </div>
+    </div>
+</form>
+<div class="row my-3">
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table table-striped border">
+                <thead class="table-info">
+                    <tr>
+                        <th>@Html.DisplayNameFor(x => x.Appointments.FirstOrDefault().AppointmentDay)</th>
+                        <th>@Html.DisplayNameFor(x => x.Appointments.FirstOrDefault().CustomerName)</th>
+                        <th>@Html.DisplayNameFor(x => x.Appointments.FirstOrDefault().CustomerPhoneNumber)</th>
+                        <th>@Html.DisplayNameFor(x => x.Appointments.FirstOrDefault().CustomerEmail)</th>
+                        <th>@Html.DisplayNameFor(x => x.Appointments.FirstOrDefault().IsConfirmed)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var el in Model.Appointments)
+            {
+                    <tr>
+                        <td>@Html.DisplayFor(x => el.AppointmentDay)</td>
+                        <td>@Html.DisplayFor(x => el.CustomerName)</td>
+                        <td>@Html.DisplayFor(x => el.CustomerPhoneNumber)</td>
+                        <td>@Html.DisplayFor(x => el.CustomerEmail)</td>
+                        <td>@Html.DisplayFor(x => el.IsConfirmed)</td>
+                        <partial name="_TableButtonsPartial" model="el.Id" />
+                    </tr>
+            }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

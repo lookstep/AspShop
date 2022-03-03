@@ -11,6 +11,7 @@ namespace CoreAspShop.Models
         [MaxLength(25)]
         public string Name { get; set; }
         [Required]
+        [Range(1.0, 5000000.0, ErrorMessage = "Range 1 - 5000000")]
         public double Price { get; set; }
         [Required]
         public bool Available { get; set; }
